@@ -126,15 +126,53 @@ $(document).ready(function() {
     // });
 
     var cssObject = {
-      height: "40px",
-      width: "500px",
-      background:"red"
+        height: "40px",
+        width: "500px",
+        background: "red"
     };
 
     $("#social-nav").css(cssObject);
 
 
-    //Working With Classes
+    //Binding & Unbinding Events
+
+    var myLis = $("#points-of-sale li"); //Get a bunch of LIs
+
+    //Bind a click method to any of these
+    myLis.on("click", function() {
+        $(this).css("background", "pink");
+
+        //After clicking 1, stop the others from working
+        myLis.off("click");
+    });
+
+
+    //Event Helpers
+
+    //Click helper - Slightly shorter than above
+    $("#lead-banner").click(function() {
+        alert("You clicked me");
+    });
+
+
+
+    //The Event Object "e"
+    $("#logo").click(function(e) {
+        console.log("Event Target: " + (e.target));
+        console.log("Event Type: " + e.type);
+        e.stopPropagation();
+    });
+
+
+
+    //Animation
+
+    $("section >h2").click(function() {
+        $(this).animate({
+                "width": "500px",
+                "height": "100px"
+            }, 4000, "linear") //Animation speed in miliseconds & easing style
+    })
 
 
 
