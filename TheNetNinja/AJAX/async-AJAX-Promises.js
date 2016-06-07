@@ -1,58 +1,21 @@
 window.onload = function() {
 
-    function handleError(jqXHR, textStatus, error) {
-        console.log(error);
-    }
+    $.get("data/tweets.json").then(function(tweets) {
+        console.log(tweets);
 
+        for (var i = 0; i < tweets.tweets.length; i++) {
+            console.log(tweets.tweets[i].content);
+        }
 
-    function callJSON() {
-        $.ajax({
-            type: "GET",
-            url: "data/tweets.json",
-            success: callbackTweets,
-            error: handleError
+        return $.get("data/friends.json");
 
-        });
+    }).then(function(friends) {
+        console.log(friends);
 
-    }
-
-    function callbackTweets(data) {
-        console.log(data.tweets[0].content);
-
-        document.write(data.tweets[0].content);
-
-        $.ajax({
-            type: "GET",
-            url: "data/friends.json",
-            success: callbackFriends,
-            error: handleError
-        });
-
-    }
-
-
-    function callbackFriends(data) {
-        console.log(data);
-
-        $.ajax({
-            type: "GET",
-            url: "data/videos.json",
-            success: function(data) {
-                console.log(data);
-
-
-            },
-            error: handleError
-        });
-
-
-    }
-
-    //Call Stuff
-
-    setInterval(callJSON, 1000);
-
-    callJSON();
-
+        return $.get("data/videos.json");
+        
+    }).then(function(videos) {
+        console.log(videos);
+    });
 
 };
