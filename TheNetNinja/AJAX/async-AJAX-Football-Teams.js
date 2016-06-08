@@ -24,12 +24,13 @@ window.onload = function() {
         console.log(footie);
 
         var feedTitle = footie.caption;
-        $("#title").text(feedTitle + " - Fixtures");
+        $("#title").text(feedTitle + " - Teams");
 
 
-        var linkFixtures = footie._links.fixtures.href;
+        //var linkFixtures = footie._links.fixtures.href;
         //console.log(linkFixtures);
-        getDataFromThisURL(linkFixtures, displayFixtures);
+        var linkTeams = footie._links.teams.href;
+        getDataFromThisURL(linkTeams, displayTeams);
     }
 
     initialCall();
@@ -54,18 +55,17 @@ window.onload = function() {
         console.log(hurah);
     }
 
-    function displayFixtures(fixtures) {
-        //alert("hello");
+    function displayTeams(teamData) {
 
-        console.log(fixtures);
+        console.log(teamData);
 
-        for (i = 0; i < fixtures.fixtures.length; i++) {
+        for (i = 0; i < teamData.teams.length; i++) {
 
-            var aFixture = fixtures.fixtures[i].homeTeamName + " vs " + fixtures.fixtures[i].awayTeamName;
+            var aTeam = teamData.teams[i].name;
 
             //console.log(aFixture);
-            $("#data-panel").append("<h2>" + aFixture + "</h2>");
-        }
+            $("#data-panel").append("<h2>" + aTeam + "</h2>");
+        };
     }
 
 
