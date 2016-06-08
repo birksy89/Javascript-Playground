@@ -61,10 +61,11 @@ window.onload = function() {
 
         for (i = 0; i < teamData.teams.length; i++) {
 
-            var aTeam = teamData.teams[i].name;
+            var aTeam = teamData.teams[i];
 
             //console.log(aFixture);
-            $("#data-panel").append("<h2>" + aTeam + "</h2>");
+            $("#data-panel").append("<h2>" + aTeam.name + "</h2>");
+            $("#data-panel").append("<img style='width:100px;' src='" +aTeam.crestUrl +"' />");
         };
     }
 
