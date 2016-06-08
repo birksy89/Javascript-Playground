@@ -27,7 +27,7 @@ window.onload = function() {
 
       var linkFixtures = footie._links.fixtures.href;
         //console.log(linkFixtures);
-      getDataFromThisURL(linkFixtures);
+      getDataFromThisURL(linkFixtures, displayFixtures);
   }
 
   initialCall();
@@ -35,12 +35,12 @@ window.onload = function() {
 
 // The Above Works... Below is... Well, we'll see.
 
-function getDataFromThisURL(thisURL){
+function getDataFromThisURL(thisURL,successAction){
   $.ajax({
       type: "GET",
       url:thisURL,
          headers: { 'X-Auth-Token': 'ea93b0d4d7724762b54ece5762079114' },
-      success: genericSuccess,
+      success: successAction,
       error: handleError
 
   });
@@ -48,11 +48,23 @@ function getDataFromThisURL(thisURL){
 
 function genericSuccess(hurah) {
     console.log(hurah);
-    return hurah;
+}
+
+function displayFixtures(fixtures){
+//alert("hello");
+
+console.log(fixtures);
+
+for(i=0; i < fixtures.fixtures.length; i++){
+
+  var aFixture = fixtures.fixtures[i].homeTeamName + " vs " + fixtures.fixtures[i].awayTeamName;
+
+  //console.log(aFixture);
+  $("#data-panel").append("<h2>"+aFixture + "</h2>");
+}
 }
 
 
-getDataFromThisURL("http://api.football-data.org/v1/soccerseasons/424");
 
 
 
