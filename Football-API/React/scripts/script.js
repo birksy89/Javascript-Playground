@@ -29,13 +29,13 @@ var CurrentGame = React.createClass({
         return (
             <div className="CurrentGame">
                 <h1>Team List</h1>
-                <PlayerList data={this.state.data}/>
+                <TeamList data={this.state.data}/>
             </div>
         );
     }
 });
 
-var PlayerList = React.createClass({
+var TeamList = React.createClass({
 
     render: function() {
 
@@ -76,13 +76,29 @@ var PlayerList = React.createClass({
                 {teamDataTest.map(function(team, index) {
                     return <div key={index} className="panel panel-default">
                         <div className="panel-heading">{team.name}</div>
-                        <div className="panel-body"><img className="crestImage" src={team.crestUrl}/></div>
+                        <div className="panel-body"><img className="crestImage" src={team.crestUrl}/>
+                        <PlayerList data ={team._links.players.href}/>
+                        </div>
                     </div>;
                 })}
 
             </div>
         )
     }
+});
+
+
+var PlayerList = React.createClass({
+  render: function() {
+
+    var tester = this.props.data;
+    return (
+      <div className="commentBox">
+        Hello, world! I am a CommentBox. {tester}
+
+      </div>
+    );
+  }
 });
 
 ReactDOM.render(
