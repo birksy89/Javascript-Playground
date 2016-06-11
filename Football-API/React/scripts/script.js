@@ -1,8 +1,6 @@
 var CurrentGame = React.createClass({
     getInitialState: function() {
-        return {
-            data: []
-        };
+        return {data: []};
     },
     componentDidMount: function() {
 
@@ -12,7 +10,6 @@ var CurrentGame = React.createClass({
             headers: {
                 'X-Auth-Token': 'ea93b0d4d7724762b54ece5762079114'
             },
-            async: false,
             success: function(result) {
                 var teamsData = result.teams;
                 console.log(teamsData);
@@ -31,8 +28,7 @@ var CurrentGame = React.createClass({
     render: function() {
         return (
             <div className="CurrentGame">
-                <h1>
-                    Current Game Information</h1>
+                <h1>Team List</h1>
                 <PlayerList data={this.state.data}/>
             </div>
         );
@@ -45,43 +41,50 @@ var PlayerList = React.createClass({
 
         // This prints the correct data
         var teamDataTest = this.props.data;
-        console.log("In the Player List");
         console.log(teamDataTest);
 
+        // This is to test looping round basic array
         var names = ['Jake', 'Jon', 'Thruster'];
         console.log(names);
 
+        // This is to test looping round "complex" object array
         var stations = [
-  {call:'station one',frequency:'000'},
-  {call:'station two',frequency:'001'}
-]
-console.log(stations);
+            {
+                call: 'station one',
+                frequency: '000'
+            }, {
+                call: 'station two',
+                frequency: '001'
+            }
+        ]
+        console.log(stations);
 
+        //This is the map function which binds each item in array to it's own bit of code
         return (
-            <p>Hello
+            <ul>
 
-              {names.map(function(name, index) {
-                    return <li key={index}>{name} - {index}</li>;
+                {names.map(function(name, index) {
+                    return <li key={index}>{name}
+                        - {index}</li>;
                 })}
 
                 {stations.map(function(station, index) {
-                      return <li key={index}>{station.call} - {index}</li>;
-                  })}
+                    return <li key={index}>{station.call}
+                        - {index}</li>;
+                })}
 
-                  {teamDataTest.map(function(team, index) {
-                        return <li key={index}>{team.name} - {index}</li>;
-                    })}
+                {teamDataTest.map(function(team, index) {
+                    return <li key={index}>{team.name}
+                        - {index}</li>;
+                })}
 
-
-            </p>
+            </ul>
         )
     }
 });
 
 ReactDOM.render(
     <CurrentGame/>, document.getElementById('data-panel'));
-
-
 
 function initialCall() {
     $.ajax({
