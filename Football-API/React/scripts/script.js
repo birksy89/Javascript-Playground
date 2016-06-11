@@ -1,20 +1,22 @@
-var UserGist = React.createClass({
+var CurrentGame = React.createClass({
     getInitialState: function() {
-        return {username: '', lastGistUrl: ''};
+        return {
+            data: []
+        };
     },
-
     componentDidMount: function() {
 
         this.serverRequest = $.ajax({
             type: "GET",
-            url: "http://api.football-data.org/v1/soccerseasons/424/teams",
+            url: "http://api.football-data.org/v1/soccerseasons/398/teams",
             headers: {
                 'X-Auth-Token': 'ea93b0d4d7724762b54ece5762079114'
             },
+            async: false,
             success: function(result) {
-                var lastGist = result.teams[0];
-                console.log(result);
-                this.setState({username: lastGist.name, lastGistUrl: lastGist.crestUrl});
+                var teamsData = result.teams;
+                console.log(teamsData);
+                this.setState({data: teamsData});
             }.bind(this),
             error: handleError
 
@@ -28,17 +30,58 @@ var UserGist = React.createClass({
 
     render: function() {
         return (
-            <div>
-                {this.state.username}s flag is:
-                <img src={this.state.lastGistUrl} />
-            </div >
+            <div className="CurrentGame">
+                <h1>
+                    Current Game Information</h1>
+                <PlayerList data={this.state.data}/>
+            </div>
         );
     }
 });
 
-ReactDOM.render(< UserGist source = "https://api.github.com/users/octocat/gists" / >, document.getElementById('data-panel'));
+var PlayerList = React.createClass({
 
-var footballURL = "http://api.football-data.org/v1/soccerseasons/424";
+    render: function() {
+
+        // This prints the correct data
+        var teamDataTest = this.props.data;
+        console.log("In the Player List");
+        console.log(teamDataTest);
+
+        var names = ['Jake', 'Jon', 'Thruster'];
+        console.log(names);
+
+        var stations = [
+  {call:'station one',frequency:'000'},
+  {call:'station two',frequency:'001'}
+]
+console.log(stations);
+
+        return (
+            <p>Hello
+
+              {names.map(function(name, index) {
+                    return <li key={index}>{name} - {index}</li>;
+                })}
+
+                {stations.map(function(station, index) {
+                      return <li key={index}>{station.call} - {index}</li>;
+                  })}
+
+                  {teamDataTest.map(function(team, index) {
+                        return <li key={index}>{team.name} - {index}</li>;
+                    })}
+
+
+            </p>
+        )
+    }
+});
+
+ReactDOM.render(
+    <CurrentGame/>, document.getElementById('data-panel'));
+
+
 
 function initialCall() {
     $.ajax({
@@ -55,48 +98,4 @@ function initialCall() {
 
 function handleError(jqXHR, textStatus, error) {
     console.log(error);
-}
-
-function callbackFootie(footie) {
-    console.log(footie);
-
-    var feedTitle = footie.caption;
-    $("#title").text(feedTitle + " - Fixtures");
-
-    var linkFixtures = footie._links.fixtures.href;
-    //console.log(linkFixtures);
-    getDataFromThisURL(linkFixtures, displayFixtures);
-}
-
-// The Above Works... Below is... Well, we'll see.
-
-function getDataFromThisURL(thisURL, successAction) {
-    $.ajax({
-        type: "GET",
-        url: thisURL,
-        headers: {
-            'X-Auth-Token': 'ea93b0d4d7724762b54ece5762079114'
-        },
-        success: successAction,
-        error: handleError
-
-    });
-}
-
-function genericSuccess(hurah) {
-    console.log(hurah);
-}
-
-function displayFixtures(fixtures) {
-    //alert("hello");
-
-    console.log(fixtures);
-
-    for (var i = 0; i < fixtures.fixtures.length; i++) {
-
-        var aFixture = fixtures.fixtures[i].homeTeamName + " vs " + fixtures.fixtures[i].awayTeamName;
-
-        //console.log(aFixture);
-        $("#data-panel").append("<h2>" + aFixture + "</h2>");
-    }
 }
