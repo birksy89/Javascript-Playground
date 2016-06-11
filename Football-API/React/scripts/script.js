@@ -129,12 +129,16 @@ var PlayerList = React.createClass({
     render: function() {
 
         var playerArray = this.state.data;
+
+        //Using Underscore.js
+        var playerArraySortedName = _.sortBy(playerArray, 'name');
+
         console.log(playerArray);
         return (
             <div className="playerLister">
                 <h2>Players</h2>
 
-                {playerArray.map(function(player, index) {
+                {playerArraySortedName.map(function(player, index) {
                     return <li key={index}>{player.name}
                         - {player.jerseyNumber}</li>;
                 })}
