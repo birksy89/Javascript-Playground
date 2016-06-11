@@ -77,7 +77,7 @@ var TeamList = React.createClass({
                     return <div key={index} className="panel panel-default">
                         <div className="panel-heading">{team.name}</div>
                         <div className="panel-body"><img className="crestImage" src={team.crestUrl}/>
-                        <PlayerList data ={team._links.players.href}/>
+                        <PlayerList dataUrl ={team._links.players.href}/>
                         </div>
                     </div>;
                 })}
@@ -89,12 +89,43 @@ var TeamList = React.createClass({
 
 
 var PlayerList = React.createClass({
+
+  getInitialState: function() {
+      return {data: []};
+  },
+
+  componentDidMount: function() {
+
+      this.serverRequest = $.ajax({
+          type: "GET",
+          url: this.props.dataUrl,
+          headers: {
+              'X-Auth-Token': 'ea93b0d4d7724762b54ece5762079114'
+          },
+          success: function(result) {
+              var playerData = result.players;
+              console.log(playerData);
+              this.setState({data: playerData});
+          }.bind(this),
+          error: handleError
+
+      });
+
+  },
+
   render: function() {
 
-    var tester = this.props.data;
+    var tester = this.state.data;
+    console.log(tester);
     return (
-      <div className="commentBox">
-        Hello, world! I am a CommentBox. {tester}
+      <div className="playerLister">
+        <h2>Players</h2>
+
+
+        {tester.map(function(station, index) {
+            return <li key={index}>{station.name}
+                - {index}</li>;
+        })}
 
       </div>
     );
