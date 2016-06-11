@@ -61,24 +61,26 @@ var PlayerList = React.createClass({
 
         //This is the map function which binds each item in array to it's own bit of code
         return (
-            <ul>
+            <div className="row">
 
-                {names.map(function(name, index) {
+                {/*names.map(function(name, index) {
                     return <li key={index}>{name}
                         - {index}</li>;
-                })}
+                })*/}
 
-                {stations.map(function(station, index) {
+                {/*stations.map(function(station, index) {
                     return <li key={index}>{station.call}
                         - {index}</li>;
-                })}
+                })*/}
 
                 {teamDataTest.map(function(team, index) {
-                    return <li key={index}>{team.name}
-                        - {index}</li>;
+                    return <div key={index} className="panel panel-default">
+                        <div className="panel-heading">{team.name}</div>
+                        <div className="panel-body"><img className="crestImage" src={team.crestUrl}/></div>
+                    </div>;
                 })}
 
-            </ul>
+            </div>
         )
     }
 });
