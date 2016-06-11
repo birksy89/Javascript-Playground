@@ -126,6 +126,14 @@ var PlayerList = React.createClass({
 
     },
 
+    //Adding Function to reverseArray
+
+    reverseArray: function(){
+console.log("Hello");
+
+
+    },
+
     render: function() {
 
         var playerArray = this.state.data;
@@ -136,8 +144,8 @@ var PlayerList = React.createClass({
         console.log(playerArray);
         return (
             <div className="playerLister">
-                <h2>Players</h2>
-
+                <h2>Players </h2>
+                <button onClick={this.reverseArray}>Reverse</button>
                 {playerArraySortedName.map(function(player, index) {
                     return <li key={index}>{player.name}
                         - {player.jerseyNumber}</li>;
