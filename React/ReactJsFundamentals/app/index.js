@@ -60,7 +60,10 @@ var ReactDOM = require ('react-dom');
 // ReactDOM.render(<FriendsContainer/>, document.getElementById('app'));
 
 
+
+
 // Facebook Example - Not fully working - Images don't load.
+//------------------------------
 // var ProfilePic = React.createClass({
 //   render: function() {
 //     return (
@@ -89,3 +92,22 @@ var ReactDOM = require ('react-dom');
 // })
 //
 //  ReactDOM.render(<Avatar username="tylermcginnis" />, document.getElementById('app'));
+
+
+
+// fn(d) = v
+//  when using a function - you should pass it the data, and it will return a view.
+
+var HelloWorld = React.createClass({
+    render: function(){
+      console.log(this.props);
+      return(
+        <div>Hello {this.props.name}</div>
+      )
+    }
+})
+
+
+ReactDOM.render(
+  <HelloWorld name="Andrew" anydatacangohere={29}/>, document.getElementById('app')
+);
