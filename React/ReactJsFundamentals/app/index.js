@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require ('react-dom');
+var ReactDOM = require('react-dom');
 
 // var HelloWorld = React.createClass({
 //     render: function(){
@@ -24,7 +24,6 @@ var ReactDOM = require ('react-dom');
 //   }
 // });
 // ReactDOM.render(<HelloUser name="Tyler"/>, document.getElementById('app'));
-
 
 //Advanced Example
 //------------------------------
@@ -59,9 +58,6 @@ var ReactDOM = require ('react-dom');
 //
 // ReactDOM.render(<FriendsContainer/>, document.getElementById('app'));
 
-
-
-
 // Facebook Example - Not fully working - Images don't load.
 //------------------------------
 // var ProfilePic = React.createClass({
@@ -93,21 +89,81 @@ var ReactDOM = require ('react-dom');
 //
 //  ReactDOM.render(<Avatar username="tylermcginnis" />, document.getElementById('app'));
 
-
-
 // fn(d) = v
 //  when using a function - you should pass it the data, and it will return a view.
 
-var HelloWorld = React.createClass({
-    render: function(){
-      console.log(this.props);
-      return(
-        <div>Hello {this.props.name}</div>
-      )
+// var HelloWorld = React.createClass({
+//     render: function(){
+//       console.log(this.props);
+//       return(
+//         <div>Hello {this.props.name}</div>
+//       )
+//     }
+// })
+//
+//
+// ReactDOM.render(
+//   <HelloWorld name="Andrew" anydatacangohere={29}/>, document.getElementById('app')
+// );
+
+var USER_DATA = {
+    name: "Andrew Birks",
+    username: "birksy89",
+    image: "http://avatars1.githubusercontent.com/u/4971630?v=3&s=460"
+}
+
+var ProfilePic = React.createClass({
+    render: function() {
+        return (<img src={this.props.image} style={{
+            height: 100,
+            width: 100
+        }}/>)
     }
 })
 
+var ProfileLink = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <a href={"https://www.github.com/" + this.props.username}>{this.props.username}</a>
+            </div>
+        )
+    }
+})
+
+var ProfileName = React.createClass({
+    render: function() {
+        return (
+            <div>
+                {this.props.name}
+            </div>
+        )
+    }
+})
+
+var Avatar = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <ProfilePic image={this.props.user.image}/>
+                <ProfileName name={this.props.user.name}/>
+                <ProfileLink username={this.props.user.username}/>
+            </div>
+        )
+    }
+})
 
 ReactDOM.render(
-  <HelloWorld name="Andrew" anydatacangohere={29}/>, document.getElementById('app')
-);
+    <Avatar user={USER_DATA}/>
+    , document.getElementById('app')
+  );
+
+  //All React components should be FIRST:
+
+  /*
+    Focused
+    Independent
+    Reusable
+    Small
+    Testable
+  */
