@@ -1,18 +1,42 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+//Data
+var name = 'Tyler McGinnis'
 
 
 //Advanced Example
 //------------------------------
 var FriendsContainer = React.createClass({
+
+  getInitialState: function() {
+     // naming it initialX clearly indicates that the only purpose
+     // of the passed down prop is to initialize something internally
+     return {friends: ['Ean Platter', 'Murphy Randally', 'Merrick Christensen']};
+   },
+
+   deleteFriend: function(friendIndex) {
+     var currentItems = this.state.friends;
+     console.log(currentItems);
+     console.log("size:" + currentItems.length);
+
+     currentItems.splice(friendIndex, 1);
+     console.log(currentItems);
+     console.log("size:" + currentItems.length);
+
+       var newItems = currentItems;
+
+       this.setState({friends: newItems});
+   },
+
   render: function(){
-    var name = 'Tyler McGinnis'
-    var friends = ['Ean Platter', 'Murphy Randall', 'Merrick Christensen']
+
     return (
       <div>
         <h3> Name: {name} </h3>
-        <ShowList names={friends} />
+        <ShowList names={this.state.friends}
+          remove={this.deleteFriend}
+           />
       </div>
     )
   }
@@ -28,7 +52,7 @@ var ShowList = React.createClass({
 
 
     var listItems = this.props.names.map(function(friend, index){
-      return <li key={index} onClick={deleteItem.bind(this,index)}> {friend} </li>;
+      return <li key={index} > {friend} </li>;
     });
 
 
@@ -40,129 +64,9 @@ var ShowList = React.createClass({
           {listItems}
         </ul>
 
-        <ol>
-          {deleteItem}
-        </ol>
       </div>
     )
   }
 });
 
 ReactDOM.render(<FriendsContainer/>, document.getElementById('app'));
-
-// Facebook Example - Not fully working - Images don't load.
-//------------------------------
-// var ProfilePic = React.createClass({
-//   render: function() {
-//     return (
-//       <img src={'https://photo.fb.com/' + this.props.username} />
-//     )
-//   }
-// })
-// var ProfileLink = React.createClass({
-//   render: function() {
-//     return (
-//       <a href={'https://www.fb.com/' + this.props.username}>
-//         {this.props.username}
-//       </a>
-//     )
-//   }
-// })
-// var Avatar = React.createClass({
-//   render: function() {
-//     return (
-//       <div>
-//         <ProfilePic username={this.props.username} />
-//         <ProfileLink username={this.props.username} />
-//       </div>
-//     )
-//   }
-// })
-//
-//  ReactDOM.render(<Avatar username="tylermcginnis" />, document.getElementById('app'));
-
-// fn(d) = v
-//  when using a function - you should pass it the data, and it will return a view.
-
-// var HelloWorld = React.createClass({
-//     render: function(){
-//       console.log(this.props);
-//       return(
-//         <div>Hello {this.props.name}</div>
-//       )
-//     }
-// })
-//
-//
-// ReactDOM.render(
-//   <HelloWorld name="Andrew" anydatacangohere={29}/>, document.getElementById('app')
-// );
-
-// var USER_DATA = {
-//     name: "Andrew Birks",
-//     username: "birksy89",
-//     image: "http://avatars1.githubusercontent.com/u/4971630?v=3&s=460"
-// }
-//
-// var ProfilePic = React.createClass({
-//     render: function() {
-//         return (<img src={this.props.image} style={{
-//             height: 100,
-//             width: 100
-//         }}/>)
-//     }
-// })
-//
-// var Link = React.createClass({
-//
-//   changeURL: function(){
-//     window.location.replace(this.props.href)
-//   },
-//     render: function() {
-//         return (
-//             <span style={{color:'blue', cursor: 'pointer'}}
-//               onClick={this.changeURL}>
-//                 {this.props.children}
-//             </span>
-//         )
-//     }
-// })
-//
-// var ProfileLink = React.createClass({
-//     render: function() {
-//         return (
-//             <div>
-//                 <Link href={"https://www.github.com/" + this.props.username}>
-//                     {this.props.username}
-//                 </Link>
-//             </div>
-//         )
-//     }
-// })
-//
-// var ProfileName = React.createClass({
-//     render: function() {
-//         return (
-//             <div>
-//                 {this.props.name}
-//             </div>
-//         )
-//     }
-// })
-//
-// var Avatar = React.createClass({
-//     render: function() {
-//         return (
-//             <div>
-//                 <ProfilePic image={this.props.user.image}/>
-//                 <ProfileName name={this.props.user.name}/>
-//                 <ProfileLink username={this.props.user.username}/>
-//             </div>
-//         )
-//     }
-// })
-
-// ReactDOM.render(
-//     <Avatar user={USER_DATA}/>,
-//      document.getElementById('app')
-//    );
