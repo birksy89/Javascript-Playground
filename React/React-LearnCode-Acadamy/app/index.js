@@ -20,13 +20,18 @@ var FriendsContainer = React.createClass({
 
 var ShowList = React.createClass({
   render: function(){
-    var listItems = this.props.names.map(function(friend){
-      return <li> {friend} </li>;
+
+    function deleteItem(index) {
+        return console.log("Friend: " + index)
+    }
+
+
+
+    var listItems = this.props.names.map(function(friend, index){
+      return <li key={index} onClick={deleteItem.bind(this,index)}> {friend} </li>;
     });
 
-    var deleteItem = this.props.names.map(function(friend,index){
-      return <li> {friend} - {index +1} </li>;
-    });
+
 
     return (
       <div>
