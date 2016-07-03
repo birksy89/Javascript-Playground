@@ -1,8 +1,7 @@
 var TodoList = React.createClass({
     render: function() {
         var createItem = function(item, index) {
-            return <li key={item.id}>{item.text} {index}
-            </li>;
+            return <li key={item.id}>{item.text} {index} </li>;
         };
 
         return (
