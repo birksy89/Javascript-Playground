@@ -1,6 +1,40 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Checkbox = React.createClass({
+
+    getInitialState: function() {
+        return {checked: true}
+    },
+
+    handleChecked: function() {
+
+        this.setState({
+            checked: !this.state.checked
+        })
+
+    },
+
+    render: function() {
+
+        var msg;
+        if (this.state.checked) {
+            msg = "Checked";
+        } else {
+            msg = "Unchecked";
+        }
+
+        return (
+            <div>
+
+                <input defaultChecked={this.state.checked} onChange={this.handleChecked} type="checkbox"/>
+                <p>Checkbox is {msg}</p>
+            </div>
+
+        );
+    }
+})
+
 var Comment = React.createClass({
 
     edit: function() {
@@ -19,6 +53,7 @@ var Comment = React.createClass({
                 <p>{this.props.children}</p>
                 <button onClick={this.edit} className="btn btn-warning">Edit</button>
                 <button onClick={this.remove} className="btn btn-danger">Remove</button>
+                <Checkbox/>
             </div>
         )
     }
