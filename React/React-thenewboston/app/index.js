@@ -1,34 +1,32 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Movie = React.createClass({
+var Comment = React.createClass({
+
+    edit: function() {
+        console.log("Editing")
+    },
+
+    remove: function() {
+        console.log("Remove")
+    },
 
     render: function() {
 
         return (
-            <div>
-                <hr/>
-                <h3>{this.props.name}</h3>
-                <h4>{this.props.genre}</h4>
-            </div>
-        );
-    }
-})
-
-var Header = React.createClass({
-
-    render: function() {
-
-        return (
-            <div>
+            <div className="container">
                 <h1>Hello {this.props.title}</h1>
-                <Movie name="Titanic" genre="Romance"/>
-                <Movie name="Batman" genre="Action"/>
-                <Movie name="Oceans 11" genre="Crime"/>
+                <p>{this.props.children}</p>
+                <button onClick={this.edit} className="btn btn-warning">Edit</button>
+                <button onClick={this.remove} className="btn btn-danger">Remove</button>
             </div>
         )
     }
 });
 
 ReactDOM.render(
-    <Header title="World!"/>, document.getElementById('app'));
+    <div>
+    <Comment title="World!">Hey my name is Andrew</Comment>
+    <Comment title="World!">Beans</Comment>
+    <Comment title="World!">Tuna</Comment>
+</div>, document.getElementById('app'));
