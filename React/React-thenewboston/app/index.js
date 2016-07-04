@@ -37,20 +37,14 @@ var Checkbox = React.createClass({
 
 var Comment = React.createClass({
 
-
-  getInitialState: function() {
-      return {
-        editing: false
-      }
-  },
-
+    getInitialState: function() {
+        return {editing: false}
+    },
 
     edit: function() {
         console.log("Editing")
 
-        this.setState({
-            editing: true
-        })
+        this.setState({editing: true})
     },
 
     remove: function() {
@@ -58,42 +52,41 @@ var Comment = React.createClass({
     },
 
     save: function() {
-      this.setState({
-          editing: false
-      })
+        var val = this.refs.newText.value;
+        console.log('New Comment: ' + val);
+        this.setState({editing: false})
     },
 
-    renderNormal: function(){
-      return (
-          <div className="panel panel-default" >
-              <h1>Hello {this.props.title}</h1>
-              <p>{this.props.children}</p>
-              <button onClick={this.edit} className="btn btn-warning">Edit</button>
-              <button onClick={this.remove} className="btn btn-danger">Remove</button>
-              <Checkbox/>
-          </div>
-      )
+    renderNormal: function() {
+        return (
+            <div className="panel panel-default">
+                <h1>Hello {this.props.title}</h1>
+                <p>{this.props.children}</p>
+                <button onClick={this.edit} className="btn btn-warning">Edit</button>
+                <button onClick={this.remove} className="btn btn-danger">Remove</button>
+                <Checkbox/>
+            </div>
+        )
     },
 
-    renderForm: function(){
-      return (
-          <div className="panel panel-default" >
-  <h1>Hello {this.props.title}</h1>
-              <textarea defaultValue={this.props.children}></textarea>
-              <button onClick={this.save} className="btn btn-success">Save</button>
+    renderForm: function() {
+        return (
+            <div className="panel panel-default">
+                <h1>Hello {this.props.title}</h1>
+                <textarea ref="newText" defaultValue={this.props.children}></textarea>
+                <button onClick={this.save} className="btn btn-success">Save</button>
 
-              <Checkbox/>
-          </div>
-      )
+                <Checkbox/>
+            </div>
+        )
     },
 
     render: function() {
 
-        if(this.state.editing){
-          return this.renderForm();
-        }
-        else{
-          return this.renderNormal();
+        if (this.state.editing) {
+            return this.renderForm();
+        } else {
+            return this.renderNormal();
         }
 
     }
@@ -101,7 +94,7 @@ var Comment = React.createClass({
 
 ReactDOM.render(
     <div className="container">
-    <Comment title="World!">Hey my name is Andrew</Comment>
+    <Comment title="Bill!">Hey my name is Andrew</Comment>
     <Comment title="World!">Beans</Comment>
-    <Comment title="World!">Tuna</Comment>
+    <Comment title="Tim!">Tuna</Comment>
 </div>, document.getElementById('app'));
