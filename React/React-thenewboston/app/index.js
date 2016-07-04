@@ -92,9 +92,27 @@ var Comment = React.createClass({
     }
 });
 
+var Board = React.createClass({
+
+    getInitialState: function() {
+        return {
+            comments: ['Hello', 'Will Add More', 'Later']
+        }
+
+    },
+
+    render: function() {
+
+        return (
+            <div className="container">
+                <Comment title="Bill!">Hey my name is Andrew</Comment>
+                <Comment title="World!">Beans</Comment>
+                <Comment title="Tim!">Tuna</Comment>
+            </div>
+
+        );
+    }
+});
+
 ReactDOM.render(
-    <div className="container">
-    <Comment title="Bill!">Hey my name is Andrew</Comment>
-    <Comment title="World!">Beans</Comment>
-    <Comment title="Tim!">Tuna</Comment>
-</div>, document.getElementById('app'));
+    <Board/>, document.getElementById('app'));
