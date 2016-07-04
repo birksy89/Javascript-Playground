@@ -105,9 +105,13 @@ var Board = React.createClass({
 
         return (
             <div className="container">
-                <Comment title="Bill!">Hey my name is Andrew</Comment>
-                <Comment title="World!">Beans</Comment>
-                <Comment title="Tim!">Tuna</Comment>
+
+              {
+                this.state.comments.map(function(text, i){
+                  return(<Comment key={i}>{text}</Comment>)
+                })
+              }
+
             </div>
 
         );
