@@ -101,16 +101,16 @@ var Board = React.createClass({
 
     },
 
+    eachComment: function(text, i){
+      return(<Comment key={i}>{text}</Comment>)
+    },
+
     render: function() {
 
         return (
             <div className="container">
 
-              {
-                this.state.comments.map(function(text, i){
-                  return(<Comment key={i}>{text}</Comment>)
-                })
-              }
+              {this.state.comments.map(this.eachComment)}
 
             </div>
 
