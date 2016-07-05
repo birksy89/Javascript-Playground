@@ -55,7 +55,7 @@ var Comment = React.createClass({
     save: function() {
         var val = this.refs.newText.value;
         console.log('New Comment: ' + val);
-          this.props.updateCommentText(val,this.props.index);
+        this.props.updateCommentText(val, this.props.index);
         this.setState({editing: false})
     },
 
@@ -103,26 +103,28 @@ var Board = React.createClass({
 
     },
 
-    removeComment: function(i){
-      console.log("Removing Comment: " +i);
-      var arr = this.state.comments;
-
-      arr.splice(i,1);
-
-      this.setState({
-        comments: arr
-      })
+    addComment: function(text) {
+        var arr = this.state.comments;
+        arr.push(text);
+        this.setState({comments: arr})
     },
 
-    UpdateComment: function(newText,i){
-      console.log("Updating Comment");
-      var arr = this.state.comments;
+    removeComment: function(i) {
+        console.log("Removing Comment: " + i);
+        var arr = this.state.comments;
 
-      arr[i] = newText;
+        arr.splice(i, 1);
 
-      this.setState({
-        comments: arr
-      })
+        this.setState({comments: arr})
+    },
+
+    UpdateComment: function(newText, i) {
+        console.log("Updating Comment");
+        var arr = this.state.comments;
+
+        arr[i] = newText;
+
+        this.setState({comments: arr})
     },
 
     eachComment: function(text, i) {
@@ -137,7 +139,7 @@ var Board = React.createClass({
 
         return (
             <div className="container">
-
+                <button onClick={this.addComment.bind(null, "Basic Text")} className="btn btn-success">Add New</button>
                 {this.state.comments.map(this.eachComment)}
 
             </div>
