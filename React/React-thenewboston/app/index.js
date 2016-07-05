@@ -48,12 +48,14 @@ var Comment = React.createClass({
     },
 
     remove: function() {
-        console.log("Remove")
+        console.log("Remove");
+        this.props.deleteComment(this.props.index);
     },
 
     save: function() {
         var val = this.refs.newText.value;
         console.log('New Comment: ' + val);
+          this.props.updateCommentText(val,this.props.index);
         this.setState({editing: false})
     },
 
@@ -101,8 +103,34 @@ var Board = React.createClass({
 
     },
 
-    eachComment: function(text, i){
-      return(<Comment key={i}>{text}</Comment>)
+    removeComment: function(i){
+      console.log("Removing Comment: " +i);
+      var arr = this.state.comments;
+
+      arr.splice(i,1);
+
+      this.setState({
+        comments: arr
+      })
+    },
+
+    UpdateComment: function(newText,i){
+      console.log("Updating Comment");
+      var arr = this.state.comments;
+
+      arr[i] = newText;
+
+      this.setState({
+        comments: arr
+      })
+    },
+
+    eachComment: function(text, i) {
+        return (
+            <Comment key={i} index={i} updateCommentText={this.UpdateComment} deleteComment={this.removeComment}>
+                {text}
+            </Comment>
+        )
     },
 
     render: function() {
@@ -110,7 +138,7 @@ var Board = React.createClass({
         return (
             <div className="container">
 
-              {this.state.comments.map(this.eachComment)}
+                {this.state.comments.map(this.eachComment)}
 
             </div>
 
