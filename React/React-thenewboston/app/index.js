@@ -35,6 +35,33 @@ var Checkbox = React.createClass({
     }
 })
 
+var AddComment = React.createClass({
+
+    getInitialState: function() {
+        return {newComment: "Set From State"}
+
+    },
+
+    addCommentChange: function() {
+
+        var val = this.refs.newCommentText.value;
+
+        this.setState({newComment: val})
+    },
+
+    render: function() {
+
+        return (
+            <div>
+
+                <textarea ref="newCommentText" onChange={this.addCommentChange} defaultValue={this.state.newComment}></textarea>
+                <button onClick={this.props.addComment.bind(null, this.state.newComment)} className="btn btn-success">Add New</button>
+            </div>
+
+        );
+    }
+})
+
 var Comment = React.createClass({
 
     getInitialState: function() {
@@ -101,21 +128,14 @@ var Board = React.createClass({
             comments: [
                 'Hello', 'Will Add More', 'Later'
             ],
-            newComment: "Set From State"
+            newCommentBoard: "Set From State Board"
         }
 
     },
 
-    addCommentChange: function() {
-
-        var val = this.refs.newCommentText.value;
-
-        this.setState({newComment: val})
-    },
-
     addComment: function(text) {
         var arr = this.state.comments;
-        var newComment = this.state.newComment;
+        var newComment = text;
         arr.push(newComment);
         this.setState({comments: arr})
     },
@@ -150,9 +170,8 @@ var Board = React.createClass({
 
         return (
             <div className="container">
-                <textarea ref="newCommentText" onChange={this.addCommentChange} defaultValue={this.state.newComment}></textarea>
-                <button onClick={this.addComment.bind(null, "Basic Text")} className="btn btn-success">Add New</button>
-                {this.state.comments.map(this.eachComment)}
+
+                <AddComment addComment={this.addComment}/> {this.state.comments.map(this.eachComment)}
 
             </div>
 
