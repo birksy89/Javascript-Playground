@@ -98,14 +98,25 @@ var Board = React.createClass({
 
     getInitialState: function() {
         return {
-            comments: ['Hello', 'Will Add More', 'Later']
+            comments: [
+                'Hello', 'Will Add More', 'Later'
+            ],
+            newComment: "Set From State"
         }
 
     },
 
+    addCommentChange: function() {
+
+        var val = this.refs.newCommentText.value;
+
+        this.setState({newComment: val})
+    },
+
     addComment: function(text) {
         var arr = this.state.comments;
-        arr.push(text);
+        var newComment = this.state.newComment;
+        arr.push(newComment);
         this.setState({comments: arr})
     },
 
@@ -139,6 +150,7 @@ var Board = React.createClass({
 
         return (
             <div className="container">
+                <textarea ref="newCommentText" onChange={this.addCommentChange} defaultValue={this.state.newComment}></textarea>
                 <button onClick={this.addComment.bind(null, "Basic Text")} className="btn btn-success">Add New</button>
                 {this.state.comments.map(this.eachComment)}
 
