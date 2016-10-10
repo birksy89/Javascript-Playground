@@ -24,7 +24,7 @@ console.log(sorted.length);
 console.log(sorted[sorted.length -1]);
 
 if(num > sorted[sorted.length -1]){
-  place = sorted.length +1;
+  place = sorted.length;
 }
 
 
