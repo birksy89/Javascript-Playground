@@ -2,6 +2,8 @@ var $ = require('jquery');
 window.jQuery = $;
 window.$ = $;
 
+//style
+require("./style.css");
 
 function getQuote(){
   $.ajax({
