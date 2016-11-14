@@ -14,7 +14,8 @@ class App extends Component {
         super(props);
         this.state = {
             quote: "Loading...",
-            author: "Author..."
+            author: "Author...",
+            image: ""
         };
     }
 
@@ -39,11 +40,38 @@ class App extends Component {
         }).then(data => {
             console.log(data);
             this.setState({quote: data.quote, author: data.author});
+            this.getAJAXMovie(data.author)
         }).catch(function(error) {
             console.log(error);
         });
 
     }
+
+
+    getAJAXMovie(movieName) {
+
+        var config = {
+            headers: {
+
+                Accept: "application/json",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        axios.get('https://api.themoviedb.org/3/search/movie?api_key=35ba9fa081c2115ca3fb49ce685aa314&query=' +  movieName, config).then(function(response) {
+
+            var data = response.data.results[0];
+            return data;
+        }).then(data => {
+            console.log(data);
+            this.setState({image: "https://image.tmdb.org/t/p/w500" + data.poster_path});
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+    }
+
+
 
     render() {
 
@@ -63,6 +91,10 @@ class App extends Component {
                 </p>
                 <h1>{this.state.quote}</h1>
                 <h2>{this.state.author}</h2>
+
+              <img src={this.state.image} />
+
+
 
                 <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
                 <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
