@@ -15,6 +15,10 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        this.getAJAX()
+    }
+
     getAJAX() {
 
         var config = {
@@ -32,6 +36,8 @@ class App extends Component {
         }).then(data => {
             console.log(data);
             this.setState({quote: data.quote, author: data.author});
+        }).catch(function(error) {
+            console.log(error);
         });
 
     }
@@ -56,7 +62,7 @@ class App extends Component {
                 <h2>{this.state.author}</h2>
                 <a href="#" onClick={this.getAJAX.bind(this)}>Load a Quote</a>
 
-                <a class="twitter-share-button" href={tweetHref}>
+                <a className="twitter-share-button" href={tweetHref}>
                     Tweet</a>
 
             </div>
