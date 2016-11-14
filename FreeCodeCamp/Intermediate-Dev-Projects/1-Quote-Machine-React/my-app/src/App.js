@@ -79,18 +79,24 @@ class App extends Component {
         return (
             <div className="App">
 
-                <div className="QuoteCard" style={{backgroundImage: 'url(' + this.state.image + ')'}}>
-                  <div className="text-wrapper">
-                    <h1>{this.state.quote}</h1>
-                    <h4>{this.state.author}</h4>
-                  </div>
+                <div className="Canvas">
+                    <div className="QuoteCard" style={{
+                        backgroundImage: 'url(' + this.state.image + ')'
+                    }}>
+                        <div className="text-wrapper">
+                            <h1>{this.state.quote}</h1>
+                            <h4>{this.state.author}</h4>
+                        </div>
+
+                    </div>
+
+                    <div className="buttonWrapper">
+
+                        <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
+                        <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
+                    </div>
 
                 </div>
-
-
-
-                <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
-                <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
 
             </div>
         );
