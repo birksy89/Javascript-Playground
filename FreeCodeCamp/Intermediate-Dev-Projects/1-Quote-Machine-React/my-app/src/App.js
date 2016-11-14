@@ -4,6 +4,9 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
+//Bootstrap React
+import Button from 'react-bootstrap/lib/Button';
+
 class App extends Component {
 
     // Constructor
@@ -60,10 +63,9 @@ class App extends Component {
                 </p>
                 <h1>{this.state.quote}</h1>
                 <h2>{this.state.author}</h2>
-                <a href="#" onClick={this.getAJAX.bind(this)}>Load a Quote</a>
 
-                <a className="twitter-share-button" href={tweetHref}>
-                    Tweet</a>
+                <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
+                <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
 
             </div>
         );
