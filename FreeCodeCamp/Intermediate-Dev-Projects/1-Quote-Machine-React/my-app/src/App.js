@@ -47,7 +47,6 @@ class App extends Component {
 
     }
 
-
     getAJAXMovie(movieName) {
 
         var config = {
@@ -58,20 +57,20 @@ class App extends Component {
             }
         };
 
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=35ba9fa081c2115ca3fb49ce685aa314&query=' +  movieName, config).then(function(response) {
+        axios.get('https://api.themoviedb.org/3/search/movie?api_key=35ba9fa081c2115ca3fb49ce685aa314&query=' + movieName, config).then(function(response) {
 
             var data = response.data.results[0];
             return data;
         }).then(data => {
             console.log(data);
-            this.setState({image: "https://image.tmdb.org/t/p/w500" + data.poster_path});
+            this.setState({
+                image: "https://image.tmdb.org/t/p/w500" + data.backdrop_path
+            });
         }).catch(function(error) {
             console.log(error);
         });
 
     }
-
-
 
     render() {
 
@@ -79,20 +78,14 @@ class App extends Component {
 
         return (
             <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h2>Welcome to My React</h2>
+
+                <div className="QuoteCard" style={{backgroundImage: 'url(' + this.state.image + ')'}}>
+                  <div className="text-wrapper">
+                    <h1>{this.state.quote}</h1>
+                    <h4>{this.state.author}</h4>
+                  </div>
+
                 </div>
-                <p className="App-intro">
-                    To get started, edit
-                    <code>src/App.js</code>
-                    and save to reload.
-
-                </p>
-                <h1>{this.state.quote}</h1>
-                <h2>{this.state.author}</h2>
-
-              <img src={this.state.image} />
 
 
 
