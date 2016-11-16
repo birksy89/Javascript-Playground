@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import axios from 'axios';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 //Bootstrap React
@@ -80,23 +80,26 @@ class App extends Component {
             <div className="App">
 
                 <div className="Canvas">
-                    <div className="QuoteCard" style={{
-                        backgroundImage: 'url(' + this.state.image + ')'
-                    }}>
-                        <div className="text-wrapper">
-                            <h1>{this.state.quote}</h1>
-                            <h4>{this.state.author}</h4>
-                        </div>
 
-                    </div>
+                  <div className="QuoteCard" style={{
+                      backgroundImage: 'url(' + this.state.image + ')'
+                  }}>
+                      <div className="text-wrapper">
+                          <h1>{this.state.quote}</h1>
+                          <h4>{this.state.author}</h4>
+                      </div>
 
-                    <div className="buttonWrapper">
+                      <div className="buttonWrapper">
 
-                        <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
-                        <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
-                    </div>
+                          <Button bsStyle="success" onClick={this.getAJAX.bind(this)}>Load a Quote</Button>
+                          <Button bsStyle="primary" target="_blank" href={tweetHref}>Tweet</Button>
+                      </div>
+
+                  </div>
 
                 </div>
+
+                
 
             </div>
         );

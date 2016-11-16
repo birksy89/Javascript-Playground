@@ -1,37 +1,18 @@
-
-.Canvas{
-  display: flex;
- align-items: center;
- justify-content: center;
+.Canvas {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
-.QuoteCard{
-position: relative;
-  width: 50%;
-  margin:auto;
-  background-color: red;
-  color: #fff;
-  padding: 200px 30px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.QuoteCard:after {
-    content: ' ';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,.5);
-}
-
-.text-wrapper{
-  position: absolute;
-  bottom:0;
-z-index: 9;
-width: 50%;
+.QuoteCard {
+    width: 33vw;
+    height: 45vh;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding: 60px 120px;
 }
