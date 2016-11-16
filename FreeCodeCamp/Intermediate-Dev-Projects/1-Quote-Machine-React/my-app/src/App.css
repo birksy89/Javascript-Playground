@@ -9,10 +9,31 @@
 }
 
 .QuoteCard {
+  position: relative;
     width: 33vw;
     height: 45vh;
     background-size: cover;
     background-position: center center;
     color: #fff;
     padding: 60px 120px;
+}
+
+.QuoteCard:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,255,.5);
+}
+
+.text-wrapper{
+  z-index: 9;
+position: relative;
+}
+
+.buttonWrapper{
+  z-index: 9;
+position: relative;
 }
