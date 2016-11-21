@@ -15,6 +15,7 @@ function smallestCommons(arr) {
 
 
     var divisibleByEveryNumber = false;
+    var passed;
     var x = 1;
 
     var answer = 0;
@@ -23,24 +24,20 @@ function smallestCommons(arr) {
         //console.log(x);
 
         var remainderTotal = 0;
-        allNumbers.forEach(function(val, index) {
-            var remainder = x % val;
 
-
-            //console.log(x + "/" + val + "Remainder= " + remainder);
-
-
-            remainderTotal += remainder;
-
+        passed = allNumbers.every(function(val){
+          return x % val ===0;
         });
 
-        if (remainderTotal === 0) {
+        if(passed){
+          answer = x;
             console.log("This would work! " + x);
-            answer = x;
-            divisibleByEveryNumber = true;
+          divisibleByEveryNumber = true;
+        }
+        else{
+          x++;
         }
 
-        x++;
     }
 
     //console.log(arr);
