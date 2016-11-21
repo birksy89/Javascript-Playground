@@ -11,7 +11,7 @@ function smallestCommons(arr) {
         allNumbers.push(i);
     }
 
-    console.log(allNumbers);
+    //console.log(allNumbers);
 
 
     var divisibleByEveryNumber = false;
@@ -30,9 +30,9 @@ function smallestCommons(arr) {
         });
 
         if(passed){
-          answer = x;
-            console.log("This would work! " + x);
-          divisibleByEveryNumber = true;
+          return x;
+            //console.log("This would work! " + x);
+          //divisibleByEveryNumber = true;
         }
         else{
           x++;
@@ -41,7 +41,7 @@ function smallestCommons(arr) {
     }
 
     //console.log(arr);
-    return answer;
+
 }
 
 

@@ -1,5 +1,5 @@
 var should = require( 'chai' ).should();
-var basic = require( './app' );
+var basic = require( './pureMaths' );
 
 describe('basic', function() {
   it('should return 60 when passed 1,5', function() {
