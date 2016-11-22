@@ -81,7 +81,7 @@ class App extends Component {
 
                 <div className="Canvas">
 
-                  <div className="QuoteCard" style={{
+                  <div className="QuoteCard bounceIn animated " style={{
                       backgroundImage: 'url(' + this.state.image + ')'
                   }}>
                       <div className="text-wrapper">
@@ -99,7 +99,7 @@ class App extends Component {
 
                 </div>
 
-                
+
 
             </div>
         );
